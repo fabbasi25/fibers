@@ -27,6 +27,14 @@ list_of_missing_rays = [] if the base is smooth
                                   or a list of 0s and 1s where 0 corresponds to the missing rays if base is singular
 list_of_fiber_types = [[fiber_type, fiber_multiplicity]] contains two element lists corresponding to the number of each type 
                         of fiber that was found.
+
+For example, we could have the following line in the output:
+[[5, 11], [38,2], 11, [[1, 212, 7, [1, 1, 1, 1, 1, 1, 0, 0, 1], [[1, 1]]], [0, 6414, 16, [], [[1, 1]]], [0, 550, 9, [], [[5, 3]]], [0, 4154, 14, [], [[10, 6]]]]],
+Then, this is the 11th polytope in the list. The number of vertices in the dual polytope are 5. The Hodge numbers are 38, 2. There were 11 fibers found in total over three bases: 
+- We have a singular base 212 with h11 = 7 with two rays missing. It has fiber 1 on it with multiplicity = 1.
+- We have base 6414 with h11 = 16. It also has a fiber 1 with multiplicity = 1.
+- We have base 4154 with h11 = 14. It has fiber 10 with multiplicity = 6.  
+
 """
 
 function get(f::IOStream, points::Matrix{Int64}, vertices::Matrix{Int64})::Tuple{Int64, Int64, String, Bool}
@@ -855,3 +863,4 @@ end
 h11_bases = readlines("h11_bases.dat") 
 toric_bases_list = read_vector_of_vectors("toric_bases.txt")
 check(ARGS[1], ARGS[2])
+
